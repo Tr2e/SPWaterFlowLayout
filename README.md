@@ -11,7 +11,7 @@
     flowlayout.interitemSpacing = 10;
     flowlayout.lineSpacing = 10;
     flowlayout.pageSize = 54;
-    flowlayout.reuseIdentifier = @"Cell";
+    flowlayout.xibName = @"TestView";
     UICollectionView *test = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:flowlayout];
     test.contentInset = UIEdgeInsetsMake(10, 10, 5, 10);
     [self.view addSubview:test];
