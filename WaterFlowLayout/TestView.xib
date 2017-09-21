@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="ITz-TP-PsR" customClass="SPSelfSizeCell">
+            <rect key="frame" x="0.0" y="0.0" width="162" height="270"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="162" height="270"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ELg-lo-BW2">
+                        <rect key="frame" x="0.0" y="0.0" width="162" height="216"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="ELg-lo-BW2" secondAttribute="height" multiplier="3:4" id="ZH9-C8-hBI"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="55m-iS-DVD">
+                        <rect key="frame" x="15" y="231" width="132" height="24"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="num" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cg8-J5-7md">
+                        <rect key="frame" x="40.5" y="84.5" width="82" height="48"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                        <color key="textColor" red="0.78160899490000002" green="0.25882352939999997" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="ELg-lo-BW2" secondAttribute="trailing" id="4Pz-Ln-BIs"/>
+                <constraint firstItem="cg8-J5-7md" firstAttribute="centerX" secondItem="ELg-lo-BW2" secondAttribute="centerX" id="5py-qf-eTA"/>
+                <constraint firstAttribute="bottom" secondItem="55m-iS-DVD" secondAttribute="bottom" constant="15" id="Fwl-yS-RcL"/>
+                <constraint firstItem="cg8-J5-7md" firstAttribute="centerY" secondItem="ELg-lo-BW2" secondAttribute="centerY" id="JuV-mZ-rln"/>
+                <constraint firstAttribute="trailing" secondItem="55m-iS-DVD" secondAttribute="trailing" constant="15" id="Onp-TE-LFv"/>
+                <constraint firstItem="ELg-lo-BW2" firstAttribute="top" secondItem="ITz-TP-PsR" secondAttribute="top" id="gir-WK-YBw"/>
+                <constraint firstItem="ELg-lo-BW2" firstAttribute="leading" secondItem="ITz-TP-PsR" secondAttribute="leading" id="s0e-Yh-l1W"/>
+                <constraint firstItem="55m-iS-DVD" firstAttribute="top" secondItem="ELg-lo-BW2" secondAttribute="bottom" constant="15" id="uxW-VT-xhP"/>
+                <constraint firstItem="55m-iS-DVD" firstAttribute="leading" secondItem="ITz-TP-PsR" secondAttribute="leading" constant="15" id="wN9-MQ-ENc"/>
+            </constraints>
+            <size key="customSize" width="162" height="270"/>
+            <connections>
+                <outlet property="detailLabel" destination="55m-iS-DVD" id="Y9v-Sw-MwD"/>
+                <outlet property="numberLabel" destination="cg8-J5-7md" id="fca-FG-fKi"/>
+                <outlet property="productImg" destination="ELg-lo-BW2" id="5JU-fU-FzE"/>
+            </connections>
+            <point key="canvasLocation" x="-9" y="118"/>
+        </collectionViewCell>
+    </objects>
+</document>
