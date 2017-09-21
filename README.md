@@ -1,5 +1,5 @@
 # SPWaterFlowLayout
-![SPWaterFlowLayout](https://github.com/Tr2e/SPEasyCollectionView/raw/master/waterflow.gif)
+![SPWaterFlowLayout](https://github.com/Tr2e/SPWaterFlowLayout/raw/master/waterflow.gif)
 **how to use**
 ```
     SPWaterFlowLayout *flowlayout = [[SPWaterFlowLayout alloc] init];
