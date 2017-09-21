@@ -21,6 +21,7 @@
     test.backgroundColor = [UIColor whiteColor];
 ```
 update**SPWaterFlowLayout**'s property `datas` when Refresh or LoadMore
+
 **Refresh**
 ```
 test.refreshDataCallBack = ^{
