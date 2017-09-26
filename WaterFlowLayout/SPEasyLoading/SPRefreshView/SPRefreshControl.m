@@ -115,7 +115,7 @@
 
 - (void)changeAppearanceWithBaseView:(UIScrollView *)baseView{
     
-    CGFloat contentInsetTop = baseView.contentInset.top;
+//    CGFloat contentInsetTop = baseView.contentInset.top;
     CGFloat contentOffsety = baseView.contentOffset.y;
     
     BOOL isBaseIniPhoneX = NO;
@@ -123,7 +123,7 @@
         isBaseIniPhoneX = YES;
     }
     
-    CGFloat conditionValue = - contentInsetTop - refreshControlHeight + _originalOffsets.y;
+    CGFloat conditionValue = - refreshControlHeight + _originalOffsets.y;
     _conditionValue = conditionValue;
     
     if (baseView.dragging)
