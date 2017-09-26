@@ -1,5 +1,7 @@
 # SPWaterFlowLayout
 
+[简书地址](http://www.jianshu.com/p/bd856b5e140a)
+
 ![SPWaterFlowLayout](https://github.com/Tr2e/SPWaterFlowLayout/raw/master/waterflow.gif)
 
 ## how to use
