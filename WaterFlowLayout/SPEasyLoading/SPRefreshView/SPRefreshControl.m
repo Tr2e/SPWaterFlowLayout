@@ -11,12 +11,10 @@
 
 
 @interface SPRefreshControl(){
-
+    
     BOOL _refreshingFlag;
     BOOL _isCollectionViewFlag;
     BOOL _autoAdjustContentInset;
-    
-    BOOL _hasNavi;
     
     CGPoint _originalOffsets;
     CGFloat _conditionValue;
@@ -35,7 +33,7 @@
 @implementation SPRefreshControl
 
 - (instancetype)initWithFrame:(CGRect)frame{
-
+    
     if (self = [super initWithFrame:frame]) {
         [self initialize];
     }
@@ -71,7 +69,8 @@
     if (_refreshState == SPRefreshStateNormal ||
         _refreshState == SPRefreshStateNonAnimateRefreshing) {
         _originalInsets = _baseView.contentInset;
-        _originalOffsets = self.baseView.contentOffset;
+        _originalOffsets = _baseView.contentOffset;
+        
     }
     
     [super layoutSubviews];
@@ -79,9 +78,6 @@
 
 #pragma mark - kvo
 - (void)setBaseView:(UITableView *)baseView{
-    UIViewController *baseVC = [self getCurrentViewController:baseView];
-    BOOL hasNavi = baseVC.navigationController;
-    _hasNavi = hasNavi;
     _baseView = baseView;
     [baseView addObserver:self forKeyPath:k_contentOffset options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:nil];
     
@@ -104,21 +100,21 @@
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
-
+    
     if ([keyPath isEqualToString:k_contentOffset]) {
         
-//        id newChange = [change objectForKey:NSKeyValueChangeNewKey];// object for key / value for key
-//        NSString *newChangeStr = [NSString stringWithFormat:@"%@",newChange];
-//        CGPoint newPoint = CGPointFromString(newChangeStr);
-//        NSLog(@" contentoffset_Y ---> %f",newPoint.y);
+        //        id newChange = [change objectForKey:NSKeyValueChangeNewKey];// object for key / value for key
+        //        NSString *newChangeStr = [NSString stringWithFormat:@"%@",newChange];
+        //        CGPoint newPoint = CGPointFromString(newChangeStr);
+        //        NSLog(@" contentoffset_Y ---> %f",newPoint.y);
         [self changeAppearanceWithBaseView:_baseView];
-
+        
     }
     
 }
 
 - (void)changeAppearanceWithBaseView:(UIScrollView *)baseView{
-
+    
     CGFloat contentInsetTop = baseView.contentInset.top;
     CGFloat contentOffsety = baseView.contentOffset.y;
     
@@ -127,7 +123,7 @@
         isBaseIniPhoneX = YES;
     }
     
-    CGFloat conditionValue = - contentInsetTop - refreshControlHeight - (isBaseIniPhoneX?44:0);
+    CGFloat conditionValue = - contentInsetTop - refreshControlHeight + _originalOffsets.y;
     _conditionValue = conditionValue;
     
     if (baseView.dragging)
@@ -139,10 +135,14 @@
         if (contentOffsety <= conditionValue && _refreshState == SPRefreshStateNormal)
         {
             self.refreshState = SPRefreshStatePulling;
+            NSLog(@"Pulling");
+            NSLog(@"\ncontentOffsetY:%f\nconditionValue:%f",contentOffsety,conditionValue);
         }
         else if (contentOffsety > conditionValue && _refreshState == SPRefreshStatePulling)
         {
             self.refreshState = SPRefreshStateNormal;
+            NSLog(@"Normal");
+            NSLog(@"\ncontentOffsetY:%f\nconditionValue:%f",contentOffsety,conditionValue);
         }
         
     }
@@ -150,22 +150,28 @@
     {
         if (_refreshState == SPRefreshStatePulling) {// 不拖拽则进入刷新状态
             self.refreshState = SPRefreshStateRefreshing;
+            NSLog(@"Refreshing");
+            NSLog(@"\ncontentOffsetY:%f\nconditionValue:%f",contentOffsety,conditionValue);
         }else{
             if (contentOffsety >= _originalOffsets.y) {
                 _refreshArrowImg.hidden = YES;
                 _refreshIndicator.hidden = YES;
                 _refreshTipLabel.hidden = YES;
             }
+            NSLog(@"Recover");
+            NSLog(@"\ncontentOffsetY:%f\nconditionValue:%f",contentOffsety,conditionValue);
         }
-        NSLog(@"contentOffset %f",contentOffsety);
+        //        NSLog(@"contentOffset %f",contentOffsety);
     }
+    //    NSLog(@"----> Intime Change <----");
+    //    NSLog(@"\ncontentOffsetY:%f\nconditionValue:%f",contentOffsety,conditionValue);
 }
 
 
 
 #pragma mark - initialize ui
 - (void)initialize{
-
+    
     self.refreshIndicator.center = CGPointMake(self.bounds.size.width/2.0 - 30, self.bounds.size.height/2.0);
     self.refreshTipLabel.center = CGPointMake(self.bounds.size.width/2.0 + 10, self.bounds.size.height/2.0);
     self.refreshArrowImg.center = self.refreshIndicator.center;
@@ -182,7 +188,7 @@
 
 #pragma mark - set
 - (void)setRefreshState:(SPRefreshState)refreshState{
-
+    
     BOOL isRefreshing = refreshState == SPRefreshStateRefreshing;
     self.refreshControlisRefreshing?self.refreshControlisRefreshing(isRefreshing):nil;
     
@@ -270,7 +276,7 @@
 
 #pragma mark - get
 - (UILabel *)refreshTipLabel{
-
+    
     if (!_refreshTipLabel) {
         _refreshTipLabel = [[UILabel alloc] init];
         _refreshTipLabel.textColor = [UIColor lightGrayColor];
@@ -282,7 +288,7 @@
 }
 
 - (UIImageView *)refreshArrowImg{
-
+    
     if (!_refreshArrowImg) {
         _refreshArrowImg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"sp_arrow"]];
         [_refreshArrowImg sizeToFit];
@@ -291,7 +297,7 @@
 }
 
 - (UIActivityIndicatorView *)refreshIndicator{
-
+    
     if (!_refreshIndicator) {
         _refreshIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     }
@@ -305,3 +311,4 @@
 
 
 @end
+

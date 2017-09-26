@@ -126,11 +126,11 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
     if ([keyPath isEqualToString:k_contentSize]) {
-        
-        id newChange = [change objectForKey:NSKeyValueChangeNewKey];// object for key / value for key
-        NSString *newChangeStr = [NSString stringWithFormat:@"%@",newChange];
-        CGSize contentSize = CGSizeFromString(newChangeStr);
-        NSLog(@"contentSize height---> %f",contentSize.height);
+//        
+//        id newChange = [change objectForKey:NSKeyValueChangeNewKey];// object for key / value for key
+//        NSString *newChangeStr = [NSString stringWithFormat:@"%@",newChange];
+//        CGSize contentSize = CGSizeFromString(newChangeStr);
+//        NSLog(@"contentSize height---> %f",contentSize.height);
         [self changeLocationWithBaseView:_baseView];
         
     }
